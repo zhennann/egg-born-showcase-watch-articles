@@ -1,0 +1,14 @@
+module.exports = app => {
+  class WatchController extends app.Controller {
+
+    async run() {
+      // only access from localhost
+      if (this.ctx.ip !== '127.0.0.1') this.ctx.throw(403);
+
+      await this.service.watch.run();
+      this.ctx.success();
+    }
+
+  }
+  return WatchController;
+};
