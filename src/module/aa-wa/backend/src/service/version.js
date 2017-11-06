@@ -18,10 +18,11 @@ module.exports = app => {
             title varchar(255) DEFAULT NULL,
             author varchar(255) DEFAULT NULL,
             avatar varchar(255) DEFAULT NULL,
-            dataNew JSON DEFAULT NULL,
-            dataOld JSON DEFAULT NULL,
-            session int(11) DEFAULT '0',
-            lastWatchedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            statNew json DEFAULT NULL,
+            statOld json DEFAULT NULL,
+            session bigint(20) DEFAULT '0',
+            lastWatchedAt timestamp DEFAULT NULL,
+            error text DEFAULT NULL,
             PRIMARY KEY (id)
           )
         `;

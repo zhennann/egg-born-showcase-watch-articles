@@ -48,6 +48,8 @@
     "vue-template-compiler": "^2.5.2"
   },
   "dependencies": {
-    "require3": "^1.0.1"
+    "require3": "^1.0.1",
+    "p-map": "^1.2.0",
+    "underscore": "^1.8.3"
   }
 }

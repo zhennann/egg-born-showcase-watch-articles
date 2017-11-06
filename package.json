@@ -31,6 +31,8 @@
     "egg-born-front": "^1.0.5",
     "egg-born-mock": "^1.0.1",
     "egg-born-module-a-version": "^1.0.5",
-    "egg-born-scripts": "^1.0.0"
+    "egg-born-scripts": "^1.0.0",
+    "p-map": "^1.2.0",
+    "underscore": "^1.8.3"
   }
 }
