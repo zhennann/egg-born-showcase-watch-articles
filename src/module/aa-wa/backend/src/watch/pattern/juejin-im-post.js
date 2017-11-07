@@ -22,7 +22,7 @@ module.exports = ctx => {
     ],
     matches: {
       url: {
-        regex: /\/\/juejin\.im\/post\/([^\/\?]*)/gi,
+        regex: /\/\/juejin\.im\/post\/([^\/\?#]+)/gi,
         matchPass: [
           {
             index: 1,

@@ -22,7 +22,7 @@ module.exports = ctx => {
     ],
     matches: {
       url: {
-        regex: /\/\/cnodejs\.org\/topic\/([^\/\?]*)/gi,
+        regex: /\/\/cnodejs\.org\/topic\/([^\/\?#]+)/gi,
         matchPass: [
           {
             index: 1,
