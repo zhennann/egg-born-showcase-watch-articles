@@ -6,6 +6,7 @@ module.exports = ctx => {
       version: '1.0.0',
       description: 'watch cnode topic',
       author: 'zhennann',
+      test: 'https://cnodejs.org/topic/59eebce1f8d374775c0157d7',
     },
     sessions: [
       {
@@ -21,7 +22,7 @@ module.exports = ctx => {
     ],
     matches: {
       url: {
-        regex: /cnodejs\.org\/topic\/([^\/\?]*)/gi,
+        regex: /\/\/cnodejs\.org\/topic\/([^\/\?]*)/gi,
         matchPass: [
           {
             index: 1,
@@ -35,8 +36,8 @@ module.exports = ctx => {
           ctx.data.title = data.title;
           ctx.data.author = data.author.loginname;
           ctx.data.avatar = data.author.avatar_url;
-          ctx.stat.replies = data.reply_count;
-          ctx.stat.visits = data.visit_count;
+          ctx.stat.reply = data.reply_count;
+          ctx.stat.visit = data.visit_count;
         },
       },
     },

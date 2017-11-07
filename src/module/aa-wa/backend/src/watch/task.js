@@ -67,7 +67,7 @@ module.exports = app => {
       // save to data
       if (match.data) this.ctx.data[match.data] = value;
       // save to stat
-      if (match.stat) this.ctx.data[match.stat] = value;
+      if (match.stat) this.ctx.stat[match.stat] = value;
 
       // onMatch exists
       if (match.onMatch) return match.onMatch(value);

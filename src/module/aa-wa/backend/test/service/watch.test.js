@@ -14,13 +14,4 @@ describe('test/service/watch.test.js', () => {
     assert(res);
   });
 
-  it('watchRun', async () => {
-    const ctx = app.mockContext({ mockUrl: mockUrl() });
-    const article = {
-      url: 'https://cnodejs.org/topic/59eebce1f8d374775c0157d7',
-      pattern: 'cnode-topic',
-    };
-    const res = await ctx.service.watch.watchRun(article);
-    assert(!res.error);
-  });
 });

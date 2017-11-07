@@ -13,6 +13,7 @@ module.exports = ctx => {
       version: '1.0.0',
       description: '',
       author: '',
+      test: '',
     },
     sessions: [
       {

@@ -5,6 +5,10 @@ module.exports = app => {
 
   class Watch {
 
+    allPatterns() {
+      return patterns;
+    }
+
     matchPattern(url) {
       for (const key of Object.keys(patterns)) {
         const Task = taskCreator(app);

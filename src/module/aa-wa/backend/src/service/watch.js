@@ -72,6 +72,12 @@ module.exports = app => {
 
     }
 
+    allPatterns() {
+      const Watch = WatchCreator(app);
+      const watch = new Watch();
+      return watch.allPatterns();
+    }
+
     matchPattern(url) {
       const Watch = WatchCreator(app);
       const watch = new Watch();
