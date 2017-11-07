@@ -32,9 +32,7 @@ module.exports = app => {
 
       // 批量执行
       const mapper = article => {
-        const Watch = WatchCreator(app);
-        const watch = new Watch();
-        return watch.run(article);
+        return this.watchRun(article);
       };
 
       const results = await pMap(articles, mapper, { concurrency: 10 });
@@ -78,6 +76,13 @@ module.exports = app => {
       const Watch = WatchCreator(app);
       const watch = new Watch();
       return watch.matchPattern(url);
+    }
+
+    async watchRun(article) {
+      const Watch = WatchCreator(app);
+      const watch = new Watch();
+      const res = await watch.run(article);
+      return res;
     }
 
   }
