@@ -14,7 +14,7 @@ module.exports = app => {
             deleted int(11) DEFAULT '0',
             uid int(11) DEFAULT NULL,
             url varchar(255) DEFAULT NULL,
-            provider varchar(255) DEFAULT NULL,
+            pattern varchar(255) DEFAULT NULL,
             title varchar(255) DEFAULT NULL,
             author varchar(255) DEFAULT NULL,
             avatar varchar(255) DEFAULT NULL,

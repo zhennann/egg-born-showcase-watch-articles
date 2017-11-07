@@ -74,10 +74,10 @@ module.exports = app => {
 
     }
 
-    matchProvider(url) {
+    matchPattern(url) {
       const Watch = WatchCreator(app);
       const watch = new Watch();
-      return watch.matchProvider(url);
+      return watch.matchPattern(url);
     }
 
   }

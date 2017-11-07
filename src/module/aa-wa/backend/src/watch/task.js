@@ -2,13 +2,13 @@ module.exports = app => {
 
   class Task {
 
-    constructor(provider, url) {
+    constructor(pattern, url) {
       this.ctx = {
         url,
         data: {},
         stat: {},
       };
-      this.provider = provider(this.ctx);
+      this.pattern = pattern(this.ctx);
     }
 
     async run() {
@@ -18,7 +18,7 @@ module.exports = app => {
       if (!articleId) throw new Error('articleId not matched');
 
       // sessions
-      for (const session of this.provider.sessions) {
+      for (const session of this.pattern.sessions) {
 
         const method = session.request.method.toUpperCase();
 
@@ -46,7 +46,7 @@ module.exports = app => {
 
         // match response
         if (session.response.matches) {
-          session.response.matches.forEach(key => this.matchValue(this.provider.matches[key], [ res.data ]));
+          session.response.matches.forEach(key => this.matchValue(this.pattern.matches[key], [ res.data ]));
         }
       }
 
@@ -56,7 +56,7 @@ module.exports = app => {
     }
 
     matchUrl() {
-      this.matchValue(this.provider.matches.url, [ this.ctx.url ]);
+      this.matchValue(this.pattern.matches.url, [ this.ctx.url ]);
       return this.ctx.data.articleId;
     }
 
