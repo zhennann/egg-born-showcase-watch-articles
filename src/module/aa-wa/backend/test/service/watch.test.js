@@ -8,7 +8,7 @@ describe('test/service/watch.test.js', () => {
     assert(!res);
   });
 
-  it('matchProvider', () => {
+  it('matchPattern', () => {
     const ctx = app.mockContext({ mockUrl: mockUrl() });
     const res = ctx.service.watch.matchPattern('https://cnodejs.org/topic/59eebce1f8d374775c0157d7');
     assert(res);

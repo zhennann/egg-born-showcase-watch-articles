@@ -5,13 +5,13 @@
     <f7-statusbar></f7-statusbar>
     <!-- Main Views -->
     <f7-views tabs toolbar-through theme="bluegray">
-      <f7-view id="mainView" ref="mainView" tab active main :init="inits.mainView" :params="params">
+      <f7-view id="mainView" ref="mainView" tab data-url="/aa/wa/articles" active main :init="inits.mainView" :params="params">
         <f7-pages></f7-pages>
       </f7-view>
-      <f7-view id="view_2" ref="view_2" tab url="/aa/wa/mine" :init="inits.view_2">
+      <f7-view id="view_2" ref="view_2" tab data-url="/aa/wa/mine" :init="inits.view_2">
         <f7-pages></f7-pages>
       </f7-view>
-      <f7-view id="view_3" ref="view_3" tab url="/aa/wa/profile" :init="inits.view_3">
+      <f7-view id="view_3" ref="view_3" tab data-url="/aa/wa/profile" :init="inits.view_3">
         <f7-pages></f7-pages>
       </f7-view>
       <!-- Bottom Tabbar-->
@@ -46,7 +46,7 @@ export default {
       },
       params: {
         domCache: true,
-        url: '/aa/start/articles',
+        url: null,
         preroute: (view, options) => { return this.onPreroute(view, options); },
       },
       tabhref: '',
@@ -63,7 +63,8 @@ export default {
     onPreroute(view, options) {
       if (!options.isBack) {
         //
-        this.$f7.hideToolbar('.viewsTabbar');
+        !options.__init && this.$f7.hideToolbar('.viewsTabbar');
+
         //
         const href = this.$$('.viewsTabbar a.active').attr('href');
         if (href !== '#mainView') {
@@ -95,6 +96,11 @@ export default {
       this.inits[view] = true;
       this.$nextTick(() => {
         this.$refs[view].onF7Init(this.$f7);
+        this.$refs[view].f7View.router.load({
+          url: this.$refs[view].$el.getAttribute('data-url'),
+          reload: true,
+          __init: true,
+        });
         this.$f7.closeModal();
       });
     },
@@ -104,12 +110,6 @@ export default {
     // load main
     this.onViewClick('mainView');
 
-    // load first hash
-    if (__hash !== '' && __hash !== '#' && __hash !== '#/') {
-      this.$nextTick(() => {
-        this.$f7.mainView.router.loadPage(__hash.substr(1));
-      });
-    }
   },
 };
 

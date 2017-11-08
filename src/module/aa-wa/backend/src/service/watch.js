@@ -35,7 +35,7 @@ module.exports = app => {
         return this.watchRun(article);
       };
 
-      const results = await pMap(articles, mapper, { concurrency: 10 });
+      const results = await pMap(articles, mapper);
       for (const result of results) {
         const ctx = result.ctx;
         const article = result.article;
@@ -46,26 +46,32 @@ module.exports = app => {
             error: result.error.message,
             session: 0,
           });
-        } else if (!_.isEqual(JSON.parse(article.statNew), ctx.stat)) {
-          // new
-          await this.ctx.db.update('Article', {
-            id: article.id,
-            error: '',
-            session: 0,
-            title: ctx.data.title,
-            author: ctx.data.author,
-            avatar: ctx.data.avatar,
-            statNew: JSON.stringify(ctx.stat),
-            statOld: article.statNew,
-            lastWatchedAt: this.ctx.db.literals.now,
-          });
         } else {
-          // not change
-          await this.ctx.db.update('Article', {
-            id: article.id,
-            error: '',
-            session: 0,
-          });
+          // visit not effect lastWatchedAt
+          const diff1 = Object.assign({}, JSON.parse(article.statNew), { visit: null });
+          const diff2 = Object.assign({}, ctx.stat, { visit: null });
+          if (!_.isEqual(diff1, diff2)) {
+          // changed
+            await this.ctx.db.update('Article', {
+              id: article.id,
+              error: '',
+              session: 0,
+              title: ctx.data.title,
+              author: ctx.data.author,
+              avatar: ctx.data.avatar,
+              statNew: JSON.stringify(ctx.stat),
+              statOld: article.statNew,
+              lastWatchedAt: this.ctx.db.literals.now,
+            });
+          } else {
+          // not changed
+            await this.ctx.db.update('Article', {
+              id: article.id,
+              error: '',
+              session: 0,
+              statNew: JSON.stringify(ctx.stat), // visit maybe changed
+            });
+          }
         }
 
       }

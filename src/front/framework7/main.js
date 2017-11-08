@@ -19,6 +19,8 @@ import App from './app';
 import config from '../config/config.js';
 import locales from '../config/locales.js';
 
+import loadmore from './components/loadmore.vue';
+
 let Vue;
 
 // install
@@ -30,6 +32,9 @@ function install(_Vue, cb) {
   Vue.use(Framework7Vue);
 
   Vue.prototype.$theme.material = true;
+
+  // register components
+  Vue.component('eb-load-more', loadmore);
 
   // return options
   return cb({

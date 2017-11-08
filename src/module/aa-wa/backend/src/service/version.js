@@ -21,7 +21,7 @@ module.exports = app => {
             statNew json DEFAULT NULL,
             statOld json DEFAULT NULL,
             session bigint(20) DEFAULT '0',
-            lastWatchedAt timestamp DEFAULT NULL,
+            lastWatchedAt timestamp NULL,
             error text DEFAULT NULL,
             PRIMARY KEY (id)
           )

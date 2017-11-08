@@ -1,0 +1,43 @@
+<template>
+  <f7-page navbar-fixed class="eb-toolbar-bottom" pull-to-refresh @ptr:refresh="onRefresh" :infinite-scroll-preloader="false" :infinite-scroll="true" @infinite="onInfinite">
+    <f7-navbar>
+      <f7-nav-left>
+        <img class="logo" src="../../static/img/logo.png">
+      </f7-nav-left>
+      <f7-nav-center sliding>{{$text('Articles')}}</f7-nav-center>
+    </f7-navbar>
+    <f7-block>
+      <app-articles ref="articles" mode="all"></app-articles>
+    </f7-block>
+  </f7-page>
+</template>
+<script>
+import articles from '../components/articles.vue';
+export default {
+  components: {
+    'app-articles': articles,
+  },
+  data() {
+    return {
+      message: 'This is an egg-born module example!',
+    };
+  },
+  methods: {
+    onRefresh(event, done) {
+      this.$refs.articles.onRefresh(event, done);
+    },
+    onInfinite(event) {
+      this.$refs.articles.onInfinite(event);
+    },
+  },
+};
+
+</script>
+<style scoped>
+.logo {
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+}
+
+</style>

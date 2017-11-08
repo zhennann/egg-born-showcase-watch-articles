@@ -24,5 +24,8 @@ module.exports = appInfo => {
     },
   };
 
+  // info
+  config.pageSize = 20;
+
   return config;
 };
