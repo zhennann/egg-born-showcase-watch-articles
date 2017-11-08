@@ -4,5 +4,5 @@ function load(name) {
 
 export default [
   { path: 'articles', component: load('articles') },
-  { path: 'test', component: load('test') },
+  { path: 'mine', component: load('mine'), meta: { requiresAuth: true } },
 ];

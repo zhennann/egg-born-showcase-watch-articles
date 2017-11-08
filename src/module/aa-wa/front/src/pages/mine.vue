@@ -7,7 +7,6 @@
       <f7-nav-center sliding>{{$text('Articles')}}</f7-nav-center>
     </f7-navbar>
     <f7-block>
-      <a href="/aa/login/login">aaaaa</a>
       <app-articles ref="articles" mode="all"></app-articles>
     </f7-block>
   </f7-page>

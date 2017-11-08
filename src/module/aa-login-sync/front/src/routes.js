@@ -3,5 +3,5 @@ function load(name) {
 }
 
 export default [
-  { path: '/login', component: load('login') },
+  { path: 'login', component: load('login') },
 ];
