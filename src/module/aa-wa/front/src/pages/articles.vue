@@ -29,6 +29,15 @@ export default {
       this.$refs.articles.onInfinite(event);
     },
   },
+  mounted() {
+    // load first hash
+    const __hash = this.$store.state.hash;
+    if (__hash !== '' && __hash !== '#' && __hash !== '#/') {
+      this.$nextTick(() => {
+        this.$f7.mainView.router.loadPage(__hash.substr(1));
+      });
+    }
+  },
 };
 
 </script>

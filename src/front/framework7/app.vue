@@ -110,6 +110,8 @@ export default {
     // load main
     this.onViewClick('mainView');
 
+    // store hash
+    this.$store.state.hash = __hash;
   },
 };
 

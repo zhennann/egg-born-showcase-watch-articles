@@ -21,6 +21,8 @@ import locales from '../config/locales.js';
 
 import loadmore from './components/loadmore.vue';
 
+import store from './store.js';
+
 let Vue;
 
 // install
@@ -41,7 +43,7 @@ function install(_Vue, cb) {
     meta: {
       provider: 'framework7',
     },
-    store: null,
+    store: store(Vue),
     axios,
     config,
     locales,
