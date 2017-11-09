@@ -23,7 +23,7 @@
     </f7-views>
     <!-- Login Screen -->
     <f7-login-screen id="demo-login-screen">
-      <f7-view url="/aa/login/login" navbar-through>
+      <f7-view ref="view_login" data-url="/aa/login/login" :init="inits.view_login" navbar-through>
         <f7-pages></f7-pages>
       </f7-view>
     </f7-login-screen>
@@ -43,6 +43,7 @@ export default {
         mainView: false,
         view_2: false,
         view_3: false,
+        view_login: false,
       },
       params: {
         domCache: true,
@@ -96,12 +97,12 @@ export default {
       this.inits[view] = true;
       this.$nextTick(() => {
         this.$refs[view].onF7Init(this.$f7);
-        this.$refs[view].f7View.router.load({
+        const res = this.$refs[view].f7View.router.load({
           url: this.$refs[view].$el.getAttribute('data-url'),
           reload: true,
           __init: true,
         });
-        this.$f7.closeModal();
+        res && this.$f7.closeModal();
       });
     },
   },
@@ -109,6 +110,8 @@ export default {
 
     // load main
     this.onViewClick('mainView');
+    // load login
+    this.onViewClick('view_login');
 
     // store hash
     this.$store.state.hash = __hash;
