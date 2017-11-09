@@ -1,6 +1,6 @@
 const pMap = require('p-map');
 const _ = require('underscore');
-const WatchCreator = require('../watch');
+const WatchArticles = require('watch-articles');
 
 module.exports = app => {
 
@@ -79,20 +79,17 @@ module.exports = app => {
     }
 
     allPatterns() {
-      const Watch = WatchCreator(app);
-      const watch = new Watch();
+      const watch = new WatchArticles();
       return watch.allPatterns();
     }
 
     matchPattern(url) {
-      const Watch = WatchCreator(app);
-      const watch = new Watch();
+      const watch = new WatchArticles();
       return watch.matchPattern(url);
     }
 
     async watchRun(article) {
-      const Watch = WatchCreator(app);
-      const watch = new Watch();
+      const watch = new WatchArticles();
       const res = await watch.run(article);
       return res;
     }

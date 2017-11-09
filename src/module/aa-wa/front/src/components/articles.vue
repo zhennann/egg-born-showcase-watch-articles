@@ -9,7 +9,7 @@
       </f7-card-header>
       <f7-card-content>
         <div class="stats">
-          <div class="stat" v-for="stat of stats(article)" width="33">
+          <div class="stat" v-for="stat of stats(article)">
             <label>{{stat.key}}:</label><span :class="stat.class">{{stat.value}}</span>
           </div>
         </div>

@@ -10,8 +10,21 @@ describe('test/service/watch.test.js', () => {
 
   it('matchPattern', () => {
     const ctx = app.mockContext({ mockUrl: mockUrl() });
-    const res = ctx.service.watch.matchPattern('https://cnodejs.org/topic/59eebce1f8d374775c0157d7');
+    const res = ctx.service.watch.matchPattern('https://github.com/zhennann/egg-born');
     assert(res);
+  });
+
+  it('watchRun: github-repo', async () => {
+    const article = {
+      url: 'https://github.com/zhennann/egg-born',
+      pattern: 'github-repo',
+    };
+
+    const ctx = app.mockContext({ mockUrl: mockUrl() });
+    const data = await ctx.service.watch.watchRun(article);
+    data.error && console.log('error: ', data.error.message);
+    data.ctx && console.log('github-repo', data.ctx);
+    assert(!data.error);
   });
 
 });

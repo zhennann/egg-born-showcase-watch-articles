@@ -50,6 +50,7 @@
   "dependencies": {
     "require3": "^1.0.1",
     "p-map": "^1.2.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "watch-articles": "^1.0.1"
   }
 }
