@@ -6,4 +6,5 @@ module.exports = [
   { method: 'post', path: 'version/update', controller: version },
   { method: 'post', path: 'watch/run', controller: watch },
   { method: 'post', path: 'article/list', controller: article },
+  { method: 'post', path: 'article/add', controller: article },
 ];

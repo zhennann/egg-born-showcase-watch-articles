@@ -4,7 +4,10 @@
       <f7-nav-left>
         <img class="logo" src="../../static/img/logo.png">
       </f7-nav-left>
-      <f7-nav-center sliding>{{$text('Articles')}}</f7-nav-center>
+      <f7-nav-center sliding>{{$text('Mine')}}</f7-nav-center>
+      <f7-nav-right>
+        <f7-link iconMaterial="add_box" data-view="#mainView" href="/aa/wa/articleAdd"></f7-link>
+      </f7-nav-right>
     </f7-navbar>
     <f7-block>
       <app-articles ref="articles" mode="all"></app-articles>

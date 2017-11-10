@@ -62,6 +62,7 @@ function install(_Vue, cb) {
         activeState: true,
         cache: true,
         cacheDuration: -1,
+        notificationHold: 3000,
       },
       // Register App Component
       components: {

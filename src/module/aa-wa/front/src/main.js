@@ -1,3 +1,5 @@
+import validator from 'vuelidate';
+
 let Vue;
 
 // import css
@@ -9,6 +11,9 @@ function install(_Vue, cb) {
   if (Vue) return console.error('already installed.');
 
   Vue = _Vue;
+
+  // validator
+  Vue.use(validator);
 
   return cb({
     routes: require('./routes.js').default,

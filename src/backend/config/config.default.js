@@ -2,7 +2,7 @@ module.exports = appInfo => {
   const config = {};
 
   // keys
-  config.keys = appInfo.name + '_1509355511167_4919';
+  config.keys = appInfo.name + '_1510355512387_5878';
 
   // info
   config.pageSize = 20;
@@ -37,8 +37,8 @@ module.exports = appInfo => {
 
   // passport github
   config.passportGithub = {
-    key: 'caf8046c4583f3aa133f',
-    secret: '11ec2b5be8178dc3f3170293bd435c8aa62673bb',
+    key: 'caf8046c1238f3aa133f',
+    secret: '11ec2b5be5878dc3f3170293bd435c8aa61238bb',
   };
 
   return config;

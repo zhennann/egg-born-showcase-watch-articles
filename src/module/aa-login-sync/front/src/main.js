@@ -22,6 +22,11 @@ function install(_Vue, cb) {
       Vue.prototype.$f7.loginScreen();
     });
 
+  // get auth first
+  Vue.prototype.$meta.api.get('/api/aa/login/user/getAuth').then(data => {
+    data && Vue.prototype.$meta.store.commit('auth/login', { user: data });
+  });
+
   return cb({
     routes: require('./routes.js').default,
   });

@@ -11,6 +11,10 @@ module.exports = app => {
       return await this.ctx.db.query(sql, [ index, pageSize ]);
     }
 
+    async add({ form, user }) {
+      this.ctx.throw(1001);
+    }
+
   }
 
   return Article;

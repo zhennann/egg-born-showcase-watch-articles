@@ -22,7 +22,8 @@ export default {
   },
   methods: {
     login() {
-      this.$api.get('/passport/github');
+      // eslint-disable-next-line
+      location.assign('/api/aa/login/passport/github');
     },
   },
 

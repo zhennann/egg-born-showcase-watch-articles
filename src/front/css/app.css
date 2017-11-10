@@ -1,1 +1,11 @@
+.eb-toolbar-bottom .page-content {
+  padding-bottom: 72px;
+}
 
+.form-group--error .form__label {
+  color: #f04124 !important;
+}
+
+.form-group--error input {
+  color: #F0543E !important;
+}

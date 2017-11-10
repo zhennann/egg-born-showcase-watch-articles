@@ -11,6 +11,19 @@ module.exports = app => {
       this.ctx.successMore(list, index, pageSize);
     }
 
+    async add() {
+
+      if (!this.ctx.isAuthenticated() || !this.ctx.user) this.ctx.throw(401);
+
+      try {
+        await this.ctx.service.article.add({ form: this.ctx.request.body, user: this.ctx.user });
+        this.ctx.success();
+      } catch (err) {
+        this.ctx.fail(err);
+      }
+
+    }
+
   }
   return ArticleController;
 };

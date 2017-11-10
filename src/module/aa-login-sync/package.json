@@ -2,6 +2,7 @@
   "name": "egg-born-module-aa-login",
   "version": "1.0.0",
   "eggBornModule": {
+    "fileVersion": 1,
     "dependencies": {}
   },
   "description": "egg-born-module-aa-login",
