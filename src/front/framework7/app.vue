@@ -127,7 +127,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  width: 360px;
+  width: 500px;
   height: 100%;
   border: 1px solid dimgray;
   margin: auto;
