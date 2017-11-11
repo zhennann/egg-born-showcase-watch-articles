@@ -2,10 +2,9 @@
 
 This is a showcase for EggBorn.js, and also is a powerful tool to watch articles's statistics, such as visits, stars, replies, etc. 
 
-Vue.js + Framework7 + Koa.js + Egg.js + MySQL + GitHub Passport
+> Vue.js + Framework7 + Koa.js + Egg.js + MySQL + GitHub Passport
 
 [![NPM version][npm-image]][npm-url]
-[![NPM quality][quality-image]][quality-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
@@ -15,8 +14,6 @@ Vue.js + Framework7 + Koa.js + Egg.js + MySQL + GitHub Passport
 
 [npm-image]: https://img.shields.io/npm/v/egg-born-showcase-watch-articles.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-born-showcase-watch-articles
-[quality-image]: http://npm.packagequality.com/shield/egg-born-showcase-watch-articles.svg?style=flat-square
-[quality-url]: http://packagequality.com/#?package=egg-born-showcase-watch-articles
 [travis-image]: https://img.shields.io/travis/zhennann/egg-born-showcase-watch-articles.svg?style=flat-square
 [travis-url]: https://travis-ci.org/zhennann/egg-born-showcase-watch-articles
 [codecov-image]: https://img.shields.io/codecov/c/github/zhennann/egg-born-showcase-watch-articles.svg?style=flat-square
@@ -32,13 +29,19 @@ Vue.js + Framework7 + Koa.js + Egg.js + MySQL + GitHub Passport
 
 ## Website
 
-- [Watch Articles](http://wa.egg-born.org)
-- QRCode
-![](docs/images/qrcode.png)
+- Website: [http://wa.egg-born.org](http://wa.egg-born.org)
+- QRCode: 
+<p>
+    <img width="200" src="https://github.com/zhennann/egg-born-showcase-watch-articles/blob/master/docs/images/qrcode.png"></img>
+</p>
 
 ## Screenshots
-![](docs/images/1.jpg)
-![](docs/images/2.jpg)
+<p>
+    <img width="200" src="https://github.com/zhennann/egg-born-showcase-watch-articles/blob/master/docs/images/1.jpg"></img>
+</p>
+<p>
+    <img width="200" src="https://github.com/zhennann/egg-born-showcase-watch-articles/blob/master/docs/images/2.jpg"></img>
+</p>
 
 ### Installation
 
