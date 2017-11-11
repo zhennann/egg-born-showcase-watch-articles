@@ -1,5 +1,26 @@
+.eb-logo {
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+}
+
 .eb-toolbar-bottom .page-content {
   padding-bottom: 72px;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+
+.avatar32 {
+  height: 32px;
+  width: 32px;
+}
+
+.avatar48 {
+  height: 48px;
+  width: 48px;
 }
 
 .form-group--error .form__label {

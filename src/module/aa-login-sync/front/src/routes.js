@@ -4,4 +4,5 @@ function load(name) {
 
 export default [
   { path: 'login', component: load('login') },
+  { path: 'profile', component: load('profile') },
 ];

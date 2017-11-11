@@ -9,6 +9,11 @@ module.exports = app => {
       this.ctx.success();
     }
 
+    async fetch() {
+      await this.service.watch.fetch(this.ctx.request.body);
+      this.ctx.success();
+    }
+
   }
   return WatchController;
 };

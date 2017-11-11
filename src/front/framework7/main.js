@@ -38,6 +38,19 @@ function install(_Vue, cb) {
   // register components
   Vue.component('eb-load-more', loadmore);
 
+  // axios
+  axios.__ebCustomInterceptorResponse = {
+    resolve: response => response,
+    reject: error => {
+      (!error.config.silent) && Vue.prototype.$f7.addNotification({ message: error.message });
+      return Promise.reject(error);
+    },
+  };
+
+  // axios indicator
+  axios.onShowIndicator = () => Vue.prototype.$f7.showIndicator();
+  axios.onHideIndicator = () => Vue.prototype.$f7.hideIndicator();
+
   // return options
   return cb({
     meta: {

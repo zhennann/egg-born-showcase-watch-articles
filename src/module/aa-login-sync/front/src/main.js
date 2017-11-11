@@ -12,8 +12,8 @@ function install(_Vue, cb) {
 
   // subcribe event: login
   Vue.prototype.$meta.eventHub.$on(
-    Vue.prototype.$meta.constants.events.login, ({ view, options }) => {
-      Vue.prototype.$meta.loginParams = { view, options };
+    Vue.prototype.$meta.constants.events.login, params => {
+      Vue.prototype.$meta.loginParams = params;
       Vue.prototype.$f7.loginScreen();
     });
   Vue.prototype.$meta.eventHub.$on(
@@ -23,12 +23,14 @@ function install(_Vue, cb) {
     });
 
   // get auth first
-  Vue.prototype.$meta.api.get('/api/aa/login/user/getAuth').then(data => {
+  Vue.prototype.$meta.api.get('/api/aa/login/user/getAuth', { silent: true }).then(data => {
     data && Vue.prototype.$meta.store.commit('auth/login', { user: data });
   });
 
   return cb({
     routes: require('./routes.js').default,
+    config: require('./config/config.js').default,
+    locales: require('./config/locales.js').default,
   });
 }
 

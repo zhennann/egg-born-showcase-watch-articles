@@ -55,6 +55,7 @@ export default {
 
 .login {
   padding: 20px;
+  opacity: 0.8;
 }
 
 .login img {

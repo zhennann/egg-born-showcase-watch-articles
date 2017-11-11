@@ -5,6 +5,11 @@ module.exports = app => {
       this.ctx.success(this.ctx.isAuthenticated() ? this.ctx.user : null);
     }
 
+    async logout() {
+      this.ctx.logout();
+      this.ctx.success();
+    }
+
   }
   return UserController;
 };

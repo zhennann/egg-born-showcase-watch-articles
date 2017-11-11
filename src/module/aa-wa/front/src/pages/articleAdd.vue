@@ -12,6 +12,9 @@
           <f7-input type="text" v-model="form.url" @input="$v.form.url.$touch()" />
         </f7-list-item>
       </f7-list>
+      <blockquote class="info">{{$text('For more information, see')}}
+        <f7-link class="external" target="_system" href="https://github.com/zhennann/egg-born-showcase-watch-articles">{{$text('Patterns Library')}}</f7-link>
+      </blockquote>
     </f7-block>
   </f7-page>
 </template>
@@ -38,9 +41,13 @@ export default {
       if (this.$v.$invalid) return;
 
       this.$api.post('article/add', this.form).then(data => {
-
-      }).catch(err => {
-        this.$f7.addNotification({ message: err.message });
+        this.$api.post('watch/fetch', data).then(() => {
+          this.$meta.eventHub.$emit('articleChanged', { type: 'add', data });
+          this.$f7.mainView.router.back();
+        }).catch(() => {
+          this.$meta.eventHub.$emit('articleChanged', { type: 'add', data });
+          this.$f7.mainView.router.back();
+        });
       });
     },
   },

@@ -2,7 +2,7 @@
   <f7-page navbar-fixed class="eb-toolbar-bottom" pull-to-refresh @ptr:refresh="onRefresh" :infinite-scroll-preloader="false" :infinite-scroll="true" @infinite="onInfinite">
     <f7-navbar>
       <f7-nav-left>
-        <img class="logo" src="../../static/img/logo.png">
+        <img class="eb-logo" src="../../static/img/logo.png">
       </f7-nav-left>
       <f7-nav-center sliding>{{$text('Mine')}}</f7-nav-center>
       <f7-nav-right>
@@ -10,7 +10,7 @@
       </f7-nav-right>
     </f7-navbar>
     <f7-block>
-      <app-articles ref="articles" mode="all"></app-articles>
+      <app-articles ref="articles" mode="mine"></app-articles>
     </f7-block>
   </f7-page>
 </template>
@@ -30,15 +30,22 @@ export default {
     onInfinite(event) {
       this.$refs.articles.onInfinite(event);
     },
+    onArticleChanged({ type }) {
+      if (type === 'add') {
+        this.$refs.articles.reload();
+      }
+    },
+  },
+  beforeDestroy() {
+    this.$meta.eventHub.$off('articleChanged', this.onArticleChanged);
+  },
+  mounted() {
+    this.$meta.eventHub.$on('articleChanged', this.onArticleChanged);
   },
 };
 
 </script>
 <style scoped>
-.logo {
-  width: 32px;
-  height: 32px;
-  margin-left: 12px;
-}
+
 
 </style>

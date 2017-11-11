@@ -5,6 +5,11 @@ export default function(Vue) {
     state: {
       hash: '',
     },
+    mutations: {
+      setHash(state, { hash }) {
+        state.hash = hash;
+      },
+    },
   };
 
 }

@@ -4,19 +4,25 @@
       <f7-card-header>
         <div class="header">
           <div><img :src="article.avatar"></div>
-          <div class="title"><a class="external" target="_system" :href="article.url">{{article.title}}</a></div>
+          <div class="title"><a class="external" target="_system" :href="article.url">{{article.title || article.error}}</a></div>
         </div>
       </f7-card-header>
       <f7-card-content>
         <div class="stats">
           <div class="stat" v-for="stat of stats(article)">
-            <label>{{stat.key}}:</label><span :class="stat.class">{{stat.value}}</span>
+            <label>{{stat.key}}: </label><span :class="stat.class">{{stat.value}}</span>
           </div>
         </div>
       </f7-card-content>
       <f7-card-footer>
         <span></span>
-        <f7-button class="button-orange">{{ article.pattern }}</f7-button>
+        <span v-if="mode==='all'">
+          {{ article.pattern.toUpperCase() }}
+        </span>
+        <f7-buttons v-if="mode==='mine'" class="buttons">
+          <f7-button iconMaterial="visibility" @click="onFetch(article)"></f7-button>
+          <f7-button iconMaterial="delete" @click="onDelete(article)"></f7-button>
+        </f7-buttons>
       </f7-card-footer>
     </f7-card>
     <eb-load-more ref="loadMore" @loadClear="onLoadClear" @loadMore="onLoadMore" :autoInit="true"></eb-load-more>
@@ -30,6 +36,7 @@ export default {
   data() {
     return {
       articles: [],
+      articlesMap: {},
     };
   },
   methods: {
@@ -50,16 +57,20 @@ export default {
     },
     onLoadClear(done) {
       this.articles = [];
+      this.articlesMap = {};
       done();
     },
     onLoadMore({ index, done }) {
 
-      this.$api.post('article/list', { index })
-        .then(data => {
-          this.articles = this.articles.concat(data.list);
-          done(null, data);
-        })
-        .catch(err => done(err));
+      this.$api.post('article/list', { index, mode: this.mode }, { silent: true }).then(data => {
+        data.list.forEach(article => {
+          if (!this.articlesMap[article.url]) {
+            this.articlesMap[article.url] = true;
+            this.articles.push(article);
+          }
+        });
+        done(null, data);
+      }).catch(err => done(err));
 
     },
     stats(article) {
@@ -70,6 +81,26 @@ export default {
         const stat = { key, value: statNew[key] };
         stat.class = statNew[key] === statOld[key] ? 'normal' : 'changed';
         return stat;
+      });
+    },
+    onFetch(article) {
+      this.$api.post('watch/fetch', { id: article.id }).then(() => {
+        this.$api.post('article/item', { id: article.id }).then(data => {
+          this.articles.splice(this.articles.findIndex(item => item.id === article.id), 1, data);
+          this.$meta.eventHub.$emit('articleChanged', { type: 'fetch', data });
+          this.$f7.addNotification({ message: this.$text('This article is fetched!') });
+        });
+      });
+    },
+    onDelete(article) {
+      this.$f7.confirm(this.$text('Are you sure to delete this article?'), null, () => {
+        this.$api.post('article/delete', { id: article.id }).then(data => {
+          if (data) {
+            this.articles.splice(this.articles.findIndex(item => item.id === article.id), 1);
+            delete this.articlesMap[article.url];
+            this.$meta.eventHub.$emit('articleChanged', { type: 'delete', data: { id: article.id } });
+          }
+        });
       });
     },
   },

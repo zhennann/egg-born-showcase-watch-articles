@@ -1,6 +1,6 @@
 <template>
   <!-- App -->
-  <div id="app">
+  <div id="app" :class="{'app-container':appContainerClass}">
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>
     <!-- Main Views -->
@@ -11,7 +11,7 @@
       <f7-view id="view_2" ref="view_2" tab data-url="/aa/wa/mine" :init="inits.view_2">
         <f7-pages></f7-pages>
       </f7-view>
-      <f7-view id="view_3" ref="view_3" tab data-url="/aa/wa/profile" :init="inits.view_3">
+      <f7-view id="view_3" ref="view_3" tab data-url="/aa/login/profile" :init="inits.view_3">
         <f7-pages></f7-pages>
       </f7-view>
       <!-- Bottom Tabbar-->
@@ -51,10 +51,10 @@ export default {
         preroute: (view, options) => { return this.onPreroute(view, options); },
       },
       tabhref: '',
+      appContainerClass: false,
     };
   },
   methods: {
-
     onWebkitTransitionEnd(event) {
       const toolbar = this.$$(event.target);
       if (toolbar.hasClass('toolbar-hidden')) {
@@ -105,6 +105,9 @@ export default {
         res && this.$f7.closeModal();
       });
     },
+    onF7Init() {
+      this.appContainerClass = this.$f7.device.os !== 'android' && this.$f7.device.os !== 'ios';
+    },
   },
   mounted() {
 
@@ -114,8 +117,20 @@ export default {
     this.onViewClick('view_login');
 
     // store hash
-    this.$store.state.hash = __hash;
+    this.$store.commit('setHash', { hash: __hash });
   },
 };
 
 </script>
+<style scoped>
+.app-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 360px;
+  height: 100%;
+  border: 1px solid dimgray;
+  margin: auto;
+}
+
+</style>
