@@ -5,8 +5,6 @@ This is a showcase for EggBorn.js, and also is a powerful tool to watch articles
 > Vue.js + Framework7 + Koa.js + Egg.js + MySQL + GitHub Passport
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![NPM download][download-image]][download-url]
@@ -14,10 +12,6 @@ This is a showcase for EggBorn.js, and also is a powerful tool to watch articles
 
 [npm-image]: https://img.shields.io/npm/v/egg-born-showcase-watch-articles.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-born-showcase-watch-articles
-[travis-image]: https://img.shields.io/travis/zhennann/egg-born-showcase-watch-articles.svg?style=flat-square
-[travis-url]: https://travis-ci.org/zhennann/egg-born-showcase-watch-articles
-[codecov-image]: https://img.shields.io/codecov/c/github/zhennann/egg-born-showcase-watch-articles.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/zhennann/egg-born-showcase-watch-articles
 [david-image]: https://img.shields.io/david/zhennann/egg-born-showcase-watch-articles.svg?style=flat-square
 [david-url]: https://david-dm.org/zhennann/egg-born-showcase-watch-articles
 [snyk-image]: https://snyk.io/test/npm/egg-born-showcase-watch-articles/badge.svg?style=flat-square
