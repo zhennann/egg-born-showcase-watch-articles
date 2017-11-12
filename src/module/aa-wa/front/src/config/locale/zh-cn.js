@@ -6,5 +6,5 @@ export default {
   'Are you sure to delete this article?': '您确认要删除此文章吗？',
   'This article is fetched!': '此文章已抓取！',
   'For more information, see': '更多信息，请参阅:',
-  'Patterns Library': '模式库',
+  'Pattern Library': '模式库',
 };

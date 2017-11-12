@@ -13,7 +13,7 @@
         </f7-list-item>
       </f7-list>
       <blockquote class="info">{{$text('For more information, see')}}
-        <f7-link class="external" target="_system" href="https://github.com/zhennann/egg-born-showcase-watch-articles">{{$text('Patterns Library')}}</f7-link>
+        <f7-link class="external" target="_system" href="https://github.com/zhennann/egg-born-showcase-watch-articles">{{$text('Pattern Library')}}</f7-link>
       </blockquote>
     </f7-block>
   </f7-page>
