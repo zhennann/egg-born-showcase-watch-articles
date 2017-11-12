@@ -7,10 +7,12 @@ const errors = require('./config/errors.js');
 // eslint-disable-next-line
 module.exports = app => {
 
+  const prefix = app.mockUtil.parseUrlFromPackage(__dirname);
+
   // authenticates routers
   app.passport.mount('github', {
-    loginURL: '/api/aa/login/passport/github',
-    callbackURL: '/api/aa/login/passport/github/callback',
+    loginURL: `${prefix}/passport/github`,
+    callbackURL: `${prefix}/passport/github/callback`,
   });
 
   // verify
