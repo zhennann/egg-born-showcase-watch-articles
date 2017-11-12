@@ -25,7 +25,7 @@
         </f7-buttons>
       </f7-card-footer>
     </f7-card>
-    <eb-load-more ref="loadMore" @loadClear="onLoadClear" @loadMore="onLoadMore" :autoInit="true"></eb-load-more>
+    <eb-load-more ref="loadMore" :onLoadClear="onLoadClear" :onLoadMore="onLoadMore" :autoInit="true"></eb-load-more>
   </div>
 </template>
 <script>
@@ -60,17 +60,18 @@ export default {
       this.articlesMap = {};
       done();
     },
-    onLoadMore({ index, done }) {
+    onLoadMore({ index }) {
 
-      this.$api.post('article/list', { index, mode: this.mode }, { silent: true }).then(data => {
-        data.list.forEach(article => {
-          if (!this.articlesMap[article.url]) {
-            this.articlesMap[article.url] = true;
-            this.articles.push(article);
-          }
+      return this.$api.post('article/list', { index, mode: this.mode }, { silent: true })
+        .then(data => {
+          data.list.forEach(article => {
+            if (!this.articlesMap[article.url]) {
+              this.articlesMap[article.url] = true;
+              this.articles.push(article);
+            }
+          });
+          return data;
         });
-        done(null, data);
-      }).catch(err => done(err));
 
     },
     stats(article) {

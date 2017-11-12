@@ -15,6 +15,12 @@ export default {
       type: Boolean,
       default: true,
     },
+    onLoadClear: {
+      type: Function,
+    },
+    onLoadMore: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -45,7 +51,8 @@ export default {
   },
   methods: {
     reload() {
-      this.$emit('loadClear', () => {
+      if (!this.onLoadClear) throw new Error('onLoadClear not exists.');
+      this.onLoadClear(() => {
         this.finished = false;
         this.doing = false;
         this.index = 0;
@@ -59,20 +66,17 @@ export default {
       this.doing = true;
       this.error = false;
 
-      this.$emit('loadMore', {
-        index: this.index,
-        done: (error, res) => {
-          if (error) {
-            this.error = true;
-            this.doing = false;
-          } else {
-            this.error = false;
-            this.doing = false;
-            this.index = res.index;
-            this.finished = res.finished;
-          }
-        },
-      });
+      if (!this.onLoadMore) throw new Error('onLoadMore not exists.');
+      this.onLoadMore({ index: this.index })
+        .then(data => {
+          this.error = false;
+          this.doing = false;
+          this.index = data.index;
+          this.finished = data.finished;
+        }).catch(() => {
+          this.error = true;
+          this.doing = false;
+        });
     },
     onRetry() {
       this.loadMore();
@@ -91,7 +95,7 @@ export default {
   height: 50px;
 }
 
-.eb-preloader {
+.eb-loadmore .eb-preloader {
   margin-top: 0;
   top: 0;
 }
