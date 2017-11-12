@@ -1,4 +1,4 @@
-# EggBorn.js ShowCase: Watch Articles
+# EggBorn.js Showcase: Watch Articles
 
 这是EggBorn.js的案例，同时也是一个强大的工具，可以自动抓取文章的统计数字，诸如visits、 stars、 replies，等等。 
 
