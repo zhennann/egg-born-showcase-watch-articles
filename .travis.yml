@@ -6,12 +6,11 @@ node_js:
 services:
   - mysql
 install:
-  
+  - npm i
 before_script:
   - bash .travis.install-mysql-5.7.sh
   - mysql -e 'CREATE DATABASE `watch-articles` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' -uroot
-  - mysql -e "grant all privileges on `watch-articles`.* to 'travis'@'localhost'" -uroot
-  - npm i
+  - mysql -e 'grant all privileges on `watch-articles`.* to travis@localhost' -uroot
 script:
   - npm run build:front
   - npm run cov:backend
