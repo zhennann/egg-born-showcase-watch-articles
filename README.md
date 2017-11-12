@@ -1,4 +1,4 @@
-# EggBorn.js ShowCase: Watch Articles
+# EggBorn.js Showcase: Watch Articles
 
 This is a showcase for EggBorn.js, and also is a powerful tool to watch articles's statistics automatically, such as visits, stars, replies, etc. 
 
