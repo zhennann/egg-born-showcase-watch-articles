@@ -56,10 +56,11 @@ Append your article's url to the system, which will fetch the article's statisti
 
 Welcome to fork the repo [watch-articles](https://github.com/zhennann/watch-articles), and create your own patterns, then submit [PR](https://github.com/zhennann/watch-articles/pulls), and then post them here!
 
-|:-----------------------------|:----------------|
-| github-repo                  |  <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann           |
-| cnode-topic                  | <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann           |
-| juejin-im-post               | <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann           |
+| Pattern  | Author           |
+| :------- | :---------------- |
+| github-repo  | <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann |
+| cnode-topic | <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann |
+| juejin-im-post | <img width="20" height="20" src="https://avatars2.githubusercontent.com/u/24246985?s=40&v=4"></img> zhennann |
 
 ## Getting Started
 
