@@ -8,9 +8,7 @@ module.exports = appInfo => {
   config.pageSize = 20;
 
   // module config
-  config.module = {
-    'aa-hello': {
-    },
+  config.modules = {
   };
 
   // mysql
