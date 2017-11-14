@@ -5,5 +5,13 @@ module.exports = appInfo => {
   config.watchCount = 20;
   config.watchInterval = 1 * 60 * 60; // one hour
 
+  // schedules
+  config.schedules = {
+    watchArticles: {
+      interval: '10s',
+      type: 'worker',
+    },
+  };
+
   return config;
 };
