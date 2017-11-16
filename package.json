@@ -1,6 +1,6 @@
 {
   "name": "egg-born-showcase-watch-articles",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Watch articles's statistics, such as visits, stars, replies, etc.",
   "scripts": {
     "dev:front": "egg-born-bin front-dev",
@@ -32,7 +32,6 @@
     "egg-born-mock": "^1.0.1",
     "egg-born-module-a-version": "^1.0.8",
     "egg-born-scripts": "^1.0.0",
-    "egg-passport": "^1.0.0",
     "egg-passport-github": "^1.0.0",
     "p-map": "^1.2.0",
     "underscore": "^1.8.3",
