@@ -1,8 +1,9 @@
 module.exports = async function(ctx) {
   try {
+    const moduleInfo = ctx.app.meta.mockUtil.parseInfoFromPackage(__dirname);
     await ctx.performAction({
       method: 'post',
-      url: '/aa/wa/watch/run',
+      url: `/${moduleInfo.url}/watch/run`,
     });
   } catch (err) {
     console.log(err);

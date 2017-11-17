@@ -9,19 +9,16 @@ module.exports = app => {
 
   const prefix = app.meta.mockUtil.parseUrlFromPackage(__dirname);
 
-  // in app
-  if (app.meta.inApp) {
   // authenticates routers
-    app.passport.mount('github', {
-      loginURL: `${prefix}/passport/github`,
-      callbackURL: `${prefix}/passport/github/callback`,
-    });
+  app.passport.mount('github', {
+    loginURL: `${prefix}/passport/github`,
+    callbackURL: `${prefix}/passport/github/callback`,
+  });
 
-    // verify
-    app.passport.verify(async function(ctx, profileUser) {
-      return await ctx.service.user.verify(profileUser);
-    });
-  }
+  // verify
+  app.passport.verify(async function(ctx, profileUser) {
+    return await ctx.service.user.verify(profileUser);
+  });
 
   //
   return {
