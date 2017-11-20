@@ -1,6 +1,6 @@
 {
   "name": "egg-born-showcase-watch-articles",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Watch articles's statistics, such as visits, stars, replies, etc.",
   "scripts": {
     "dev:front": "egg-born-bin front-dev",

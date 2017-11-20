@@ -5,14 +5,12 @@ const locales = require('./config/locales.js');
 const errors = require('./config/errors.js');
 
 // eslint-disable-next-line
-module.exports = app => {
-
-  const prefix = app.meta.mockUtil.parseUrlFromPackage(__dirname);
+module.exports = (app,moduleInfo) => {
 
   // authenticates routers
   app.passport.mount('github', {
-    loginURL: `${prefix}/passport/github`,
-    callbackURL: `${prefix}/passport/github/callback`,
+    loginURL: `/api/${moduleInfo.url}/passport/github`,
+    callbackURL: `/api/${moduleInfo.url}/passport/github/callback`,
   });
 
   // verify
