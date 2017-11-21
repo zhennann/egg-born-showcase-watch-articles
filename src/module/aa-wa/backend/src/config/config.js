@@ -13,5 +13,12 @@ module.exports = appInfo => {
     },
   };
 
+  // middlewares
+  config.middlewares = {
+    test: {
+      name: 'test',
+    },
+  };
+
   return config;
 };
