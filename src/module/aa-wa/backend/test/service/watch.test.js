@@ -1,30 +1,22 @@
-const { app, mockUrl, assert } = require('egg-born-mock')(__dirname);
+const { app, mockUrl, mockInfo, assert } = require('egg-born-mock')(__dirname);
+
+const testUrl = 'https://github.com/zhennann/egg-born';
 
 describe('test/service/watch.test.js', () => {
 
-  it('run', async () => {
-    const ctx = app.mockContext({ mockUrl: mockUrl() });
-    const res = await ctx.service.watch.run();
-    assert(!res);
-  });
-
   it('matchPattern', () => {
     const ctx = app.mockContext({ mockUrl: mockUrl() });
-    const res = ctx.service.watch.matchPattern('https://github.com/zhennann/egg-born');
+    const res = ctx.service.watch.matchPattern(testUrl);
     assert(res);
   });
 
-  it('watchRun: github-repo', async () => {
-    const article = {
-      url: 'https://github.com/zhennann/egg-born',
-      pattern: 'github-repo',
-    };
-
+  it('schedule:watchArticles', async () => {
     const ctx = app.mockContext({ mockUrl: mockUrl() });
-    const data = await ctx.service.watch.watchRun(article);
-    data.error && console.log('error: ', data.error.message);
-    data.ctx && console.log('github-repo', data.ctx);
-    assert(!data.error);
+    await ctx.db.query('update Article set updatedAt=timestampadd(SECOND,-3600,updatedAt) where url=?', [ testUrl ]);
+    await app.meta.runSchedule(`${mockInfo().fullName}:watchArticles`);
+    const res = await ctx.db.queryOne('select statNew  from Article where url=?', [ testUrl ]);
+    const statNew = JSON.parse(res.statNew);
+    assert(statNew.star >= 86);
   });
 
 });

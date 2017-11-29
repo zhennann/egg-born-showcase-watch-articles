@@ -30,6 +30,13 @@ module.exports = app => {
         await this.ctx.db.query(sql);
 
       }
+
+      if (version === 0) {
+        // insert an article
+        const form = { url: 'https://github.com/zhennann/egg-born' };
+        const user = { id: null };
+        await this.ctx.service.article.add({ form, user });
+      }
     }
 
   }

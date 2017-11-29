@@ -15,7 +15,7 @@ module.exports = app => {
       // get articles
       let sql = `
         select * from Article 
-          where deleted=0 and session=0 and timestampdiff(SECOND,updatedAt,now())>${watchInterval}
+          where deleted=0 and session=0 and timestampdiff(SECOND,updatedAt,now())>=${watchInterval}
             order by updatedAt  
               limit 0,${watchCount}
       `;
