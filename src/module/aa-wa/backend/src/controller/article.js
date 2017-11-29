@@ -21,8 +21,6 @@ module.exports = app => {
 
     async add() {
 
-      if (!this.ctx.isAuthenticated()) this.ctx.throw(401);
-
       try {
         const id = await this.ctx.service.article.add({ form: this.ctx.request.body, user: this.ctx.user });
         this.ctx.success({ id });
@@ -33,8 +31,6 @@ module.exports = app => {
     }
 
     async delete() {
-
-      if (!this.ctx.isAuthenticated()) this.ctx.throw(401);
 
       const res = await this.ctx.service.article.delete({ id: this.ctx.getInt('id'), user: this.ctx.user });
       this.ctx.success(res);

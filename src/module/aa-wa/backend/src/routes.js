@@ -8,6 +8,6 @@ module.exports = [
   { method: 'post', path: 'watch/fetch', controller: watch },
   { method: 'post', path: 'article/list', controller: article },
   { method: 'post', path: 'article/item', controller: article },
-  { method: 'post', path: 'article/add', controller: article },
-  { method: 'post', path: 'article/delete', controller: article },
+  { method: 'post', path: 'article/add', controller: article, middlewares: 'auth' },
+  { method: 'post', path: 'article/delete', controller: article, middlewares: 'auth' },
 ];
