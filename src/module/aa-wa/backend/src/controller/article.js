@@ -22,8 +22,8 @@ module.exports = app => {
     async add() {
 
       try {
-        const id = await this.ctx.service.article.add({ form: this.ctx.request.body, user: this.ctx.user });
-        this.ctx.success({ id });
+        const res = await this.ctx.service.article.add({ form: this.ctx.request.body, user: this.ctx.user });
+        this.ctx.success(res);
       } catch (err) {
         this.ctx.fail(err);
       }

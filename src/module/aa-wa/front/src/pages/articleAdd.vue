@@ -41,7 +41,7 @@ export default {
       if (this.$v.$invalid) return;
 
       this.$api.post('article/add', this.form).then(data => {
-        this.$api.post('watch/fetch', data).then(() => {
+        this.$api.post('watch/fetch', { id: data.articleId }).then(() => {
           this.$meta.eventHub.$emit('articleChanged', { type: 'add', data });
           this.$f7.mainView.router.back();
         }).catch(() => {

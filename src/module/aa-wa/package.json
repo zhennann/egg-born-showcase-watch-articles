@@ -2,7 +2,7 @@
   "name": "egg-born-module-aa-wa",
   "version": "1.0.0",
   "eggBornModule": {
-    "fileVersion": 1,
+    "fileVersion": 2,
     "dependencies": {}
   },
   "description": "watch articles",

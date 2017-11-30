@@ -57,22 +57,14 @@ export default {
     },
     onLoadClear(done) {
       this.articles = [];
-      this.articlesMap = {};
       done();
     },
     onLoadMore({ index }) {
-
       return this.$api.post('article/list', { index, mode: this.mode }, { silent: true })
         .then(data => {
-          data.list.forEach(article => {
-            if (!this.articlesMap[article.url]) {
-              this.articlesMap[article.url] = true;
-              this.articles.push(article);
-            }
-          });
+          this.articles = this.articles.concat(data.list);
           return data;
         });
-
     },
     stats(article) {
       const statNew = JSON.parse(article.statNew) || {};
@@ -98,7 +90,6 @@ export default {
         this.$api.post('article/delete', { id: article.id }).then(data => {
           if (data) {
             this.articles.splice(this.articles.findIndex(item => item.id === article.id), 1);
-            delete this.articlesMap[article.url];
             this.$meta.eventHub.$emit('articleChanged', { type: 'delete', data: { id: article.id } });
           }
         });

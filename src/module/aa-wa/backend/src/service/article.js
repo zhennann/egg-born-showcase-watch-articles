@@ -7,11 +7,13 @@ module.exports = app => {
       //
       let sql;
       if (mode === 'all') {
-        sql = `select * from Article where deleted=0 and title<>''
+        sql = `select * from Article where refTimes>0 and title<>''
           order by lastWatchedAt desc limit ?,?`;
       } else if (mode === 'mine') {
-        sql = `select * from Article where deleted=0 and uid=${user.id}
-          order by lastWatchedAt desc limit ?,?`;
+        sql = `select a.*,b.id as refId from Article a
+                 left join ArticleRef b on a.id=b.articleId
+                   where b.uid=${user.id}
+                   order by lastWatchedAt desc limit ?,?`;
       }
 
       return await this.ctx.db.query(sql, [ index, pageSize ]);
@@ -29,31 +31,36 @@ module.exports = app => {
       const pattern = this.ctx.service.watch.matchPattern(url);
       if (!pattern) this.ctx.throw(1001);
 
-      // check if exists
-      const data = { uid, url };
-      let res = await this.ctx.db.get('Article', data);
+      // check if article exists
+      let articleId;
+      let res = await this.ctx.db.get('Article', { url });
       if (res) {
-        // exists
-        if (res.deleted === 0) this.ctx.throw(1002);
-
-        // update deleted
-        await this.ctx.db.update('Article', {
-          id: res.id,
-          deleted: 0,
+        articleId = res.id;
+      } else {
+        res = await this.ctx.db.insert('Article', {
+          url,
+          pattern: pattern.meta.name,
         });
-        return res.id;
+        articleId = res.insertId;
       }
+
+      // check if articleref exists
+      res = await this.ctx.db.get('ArticleRef', { uid, articleId });
+      if (res) this.ctx.throw(1002);
+
+      // update refTimes
+      await this.ctx.db.query('update Article set refTimes=refTimes+1 where id=?', [ articleId ]);
       // insert
-      res = await this.ctx.db.insert('Article', {
-        ...data,
-        pattern: pattern.meta.name,
-      });
-      return res.insertId;
+      res = await this.ctx.db.insert('ArticleRef', { uid, articleId });
+      return { id: res.insertId, articleId };
     }
 
     async delete({ id, user }) {
-      const sql = 'update Article set deleted=1 where id=? and uid=?';
-      const res = await this.ctx.db.query(sql, [ id, user.id ]);
+      const ref = await this.ctx.db.get('ArticleRef', { articleId: id, uid: user.id });
+      if (!ref) this.ctx.throw(403);
+
+      let res = await this.ctx.db.query('update Article a set refTimes=refTimes-1 where id=?', [ ref.articleId ]);
+      res = await this.ctx.db.delete('ArticleRef', { id: ref.id });
       return res.affectedRows === 1;
     }
 
