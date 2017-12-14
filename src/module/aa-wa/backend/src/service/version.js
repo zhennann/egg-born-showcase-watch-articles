@@ -7,9 +7,9 @@ module.exports = app => {
         setTimeout(resolve, time);
       });
     }
-    async update(version) {
+    async update(options) {
 
-      if (version === 2) {
+      if (options.version === 2) {
         // create table: ArticleRef
         let sql = `
           CREATE TABLE ArticleRef (
@@ -71,7 +71,7 @@ module.exports = app => {
 
       }
 
-      if (version === 1) {
+      if (options.version === 1) {
         // create table: Article
         const sql = `
           CREATE TABLE Article (
@@ -97,12 +97,13 @@ module.exports = app => {
         await this.ctx.db.query(sql);
       }
 
-      if (version === 0) {
-        // insert an article
-        const form = { url: 'https://github.com/zhennann/egg-born' };
-        const user = { id: null };
-        await this.ctx.service.article.add({ form, user });
-      }
+    }
+
+    async test() {
+      // insert an article
+      const form = { url: 'https://github.com/zhennann/egg-born' };
+      const user = { id: null };
+      await this.ctx.service.article.add({ form, user });
     }
 
   }
