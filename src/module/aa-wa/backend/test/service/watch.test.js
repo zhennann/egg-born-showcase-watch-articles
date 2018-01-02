@@ -13,7 +13,7 @@ describe('test/service/watch.test.js', () => {
   it('schedule:watchArticles', async () => {
     const ctx = app.mockContext({ mockUrl: mockUrl() });
     await ctx.db.query('update Article set updatedAt=timestampadd(SECOND,-3600,updatedAt) where url=?', [ testUrl ]);
-    await app.meta.runSchedule(`${ctx.module.info.fullName}:watchArticles`);
+    await app.meta.runSchedule(ctx.module.info.relativeName, 'watchArticles');
     const res = await ctx.db.queryOne('select statNew from Article where url=?', [ testUrl ]);
     const statNew = JSON.parse(res.statNew);
     assert(statNew.star >= 86);
