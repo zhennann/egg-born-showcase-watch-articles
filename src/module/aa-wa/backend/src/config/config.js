@@ -10,6 +10,7 @@ module.exports = appInfo => {
     watchArticles: {
       interval: '10s',
       type: 'worker',
+      path: 'watch/run',
     },
   };
 
