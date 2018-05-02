@@ -15,7 +15,8 @@
         <f7-pages></f7-pages>
       </f7-view>
       <!-- Bottom Tabbar-->
-      <f7-toolbar tabbar labels bottom class="viewsTabbar" @webkitTransitionEnd.native="onWebkitTransitionEnd">
+      <f7-toolbar tabbar labels bottom
+ class="viewsTabbar" @webkitTransitionEnd.native="onWebkitTransitionEnd">
         <f7-link href="#mainView" tab-link :text="$text('Articles')" iconMaterial="schedule" active></f7-link>
         <f7-link href="#view_2" tab-link :text="$text('Mine')" iconMaterial="event_note" @click="onViewClick('view_2')"></f7-link>
         <f7-link href="#view_3" tab-link :text="$text('Profile')" iconMaterial="account_box" @click="onViewClick('view_3')"></f7-link>

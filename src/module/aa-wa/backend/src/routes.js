@@ -9,9 +9,9 @@ const auth = async function(ctx, next) {
 };
 
 module.exports = [
-  { method: 'post', path: 'version/update', controller: version, middlewares: 'safeAccess' },
-  { method: 'post', path: 'version/test', controller: version, middlewares: 'safeAccess' },
-  { method: 'post', path: 'watch/run', controller: watch, middlewares: 'safeAccess' },
+  { method: 'post', path: 'version/update', controller: version, middlewares: 'inner' },
+  { method: 'post', path: 'version/test', controller: version, middlewares: 'inner' },
+  { method: 'post', path: 'watch/run', controller: watch, middlewares: 'inner' },
   { method: 'post', path: 'watch/fetch', controller: watch },
   { method: 'post', path: 'article/list', controller: article },
   { method: 'post', path: 'article/item', controller: article },
