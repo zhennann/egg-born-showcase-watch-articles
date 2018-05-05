@@ -34,7 +34,7 @@ This is a showcase for EggBorn.js, and also is a powerful tool to watch articles
 
 ### Website
 
-- Website: [http://wa.egg-born.org](http://wa.egg-born.org)
+- Website: [http://wa.egg-born.org](http://wa.cabloy.org)
 - QRCode: 
 <p>
     <img width="200" src="https://github.com/zhennann/egg-born-showcase-watch-articles/blob/master/docs/images/qrcode.png"></img>

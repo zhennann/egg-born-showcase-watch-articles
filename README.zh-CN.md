@@ -34,7 +34,7 @@
 
 ### 官网
 
-- 网址：[http://wa.egg-born.org](http://wa.egg-born.org)
+- 网址：[http://wa.egg-born.org](http://wa.cabloy.org)
 - 二维码：
 <p>
     <img width="200" src="https://github.com/zhennann/egg-born-showcase-watch-articles/blob/master/docs/images/qrcode.png"></img>
