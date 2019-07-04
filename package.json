@@ -11,7 +11,9 @@
     "test:backend": "egg-born-bin backend-test",
     "cov:backend": "egg-born-bin backend-cov",
     "start:backend": "egg-born-scripts backend-start --daemon",
-    "stop:backend": "egg-born-scripts backend-stop"
+    "stop:backend": "egg-born-scripts backend-stop",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,8 @@
     "p-map": "^1.2.0",
     "underscore": "^1.8.3",
     "vuelidate": "^0.6.1",
-    "watch-articles": "^1.0.1"
-  }
+    "watch-articles": "^1.0.1",
+    "snyk": "^1.190.0"
+  },
+  "snyk": true
 }
