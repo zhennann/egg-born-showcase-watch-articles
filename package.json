@@ -28,7 +28,7 @@
   "dependencies": {
     "egg-born-backend": "^1.0.87",
     "egg-born-bin": "^1.0.1",
-    "egg-born-front": "^1.0.13",
+    "egg-born-front": "^2.0.9",
     "egg-born-mock": "^1.0.18",
     "egg-born-module-a-version": "^2.0.4",
     "egg-born-scripts": "^1.0.3",
